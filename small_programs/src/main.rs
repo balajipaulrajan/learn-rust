@@ -4,6 +4,7 @@ fn main() {
     fibonacci();
     fahrenheit_to_celsius();
     celsius_to_fahrenheit();
+    struct_sample();
 }
 
 fn fibonacci() {
@@ -46,4 +47,24 @@ fn read_input_number() -> f64 {
     io::stdin().read_line(&mut n).expect("Failed to read");
     let n = n.trim().parse().expect("Expected a number");
     n
+}
+
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+fn rectangle_area(rect: &Rectangle) -> u32 {
+    rect.width * rect.height
+}
+
+fn struct_sample() {
+    let rect = Rectangle {
+        width: 20,
+        height: 30,
+    };
+    println!("rect is {:?}", rect);
+    let area = rectangle_area(&rect);
+    println!("area of rectangle is {}", area);
 }
