@@ -5,6 +5,7 @@ fn main() {
     fahrenheit_to_celsius();
     celsius_to_fahrenheit();
     struct_sample();
+    struct_impl_sample();
 }
 
 fn fibonacci() {
@@ -67,4 +68,36 @@ fn struct_sample() {
     println!("rect is {:?}", rect);
     let area = rectangle_area(&rect);
     println!("area of rectangle is {}", area);
+}
+
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+    fn can_hold(&self, other: Rectangle) -> bool {
+        (self.width > other.width && self.height > other.height)
+            || (self.width > other.height && self.height > other.width)
+    }
+
+    fn square(size: u32) -> Rectangle {
+        Rectangle {
+            width: size,
+            height: size,
+        }
+    }
+}
+
+fn struct_impl_sample() {
+    let rect = Rectangle {
+        width: 10,
+        height: 5,
+    };
+    println!("Area of rectangle is {}", rect.area());
+    let rect1 = Rectangle {
+        width: 4,
+        height: 6,
+    };
+    println!("rect1 fits into rect - {}", rect.can_hold(rect1));
+    let sq = Rectangle::square(10);
+    println!("Area of square is {}", sq.area());
 }
